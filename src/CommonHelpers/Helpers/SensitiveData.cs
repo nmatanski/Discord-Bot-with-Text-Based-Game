@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace CommonHelpers.Helpers
@@ -9,12 +11,20 @@ namespace CommonHelpers.Helpers
     {
         public static string GetConnectionString()
         {
-            return (string)XDocument.Load(@"..\..\config.xml").Root.Element("connectionString");
+            var xml = File.ReadAllText(@"..\..\..\..\config.xml");
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml);
+            var node = doc.SelectSingleNode("sd/connectionString");
+            return node.InnerText;
         }
 
         public static string GetBotToken()
         {
-            return (string)XDocument.Load(@"..\..\config.xml").Root.Element("botToken");
+            var xml = File.ReadAllText(@"..\..\..\..\config.xml");
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml);
+            var node = doc.SelectSingleNode("sd/botToken");
+            return node.InnerText;
         }
     }
 }
