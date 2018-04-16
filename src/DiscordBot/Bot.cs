@@ -1,4 +1,5 @@
-﻿using Discord;
+﻿using CommonHelpers.Helpers;
+using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,7 +30,7 @@ namespace DiscordBot
 
             services = new ServiceCollection().AddSingleton(client).AddSingleton(commands).BuildServiceProvider();
 
-            string botToken = ""; ///TODO: token	
+            string botToken = SensitiveData.GetBotToken(); ///TODO: token	
 
             client.Log += Log;
 

@@ -114,7 +114,7 @@ namespace DiscordWebApplication.Controllers
                 if (!tempEmail[tempEmail.Length-1].Equals('@'))
                 {
                     ViewData["WrongRegister"] = "You've already signed up with this Discord user.";
-                    return View(entry);
+                    //return View(entry);
                 }
 
                 string password = HashUtils.CreateHashCode(entry.Password);

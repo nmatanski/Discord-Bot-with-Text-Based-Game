@@ -29,11 +29,11 @@ namespace DiscordWebApplication.Controllers
             int pageMaxNumber = 5;
 
             _userId = HttpContext.Session.GetObjectFromJson<string>("UserId");
-            if (_userId == null)
-            {
-                ViewBag["NoPermissions"] = "Log in first.";
-                return RedirectToAction("Login", "Account");
-            }
+            //if (_userId == null)
+            //{
+            //    //ViewBag["NoPermissions"] = "Log in first.";
+            //    return RedirectToAction("Login", "Account");
+            //}
             _username = HttpContext.Session.GetObjectFromJson<string>("UserName");
             _role = HttpContext.Session.GetObjectFromJson<Role>("Role");
             ViewData["UserId"] = _userId;

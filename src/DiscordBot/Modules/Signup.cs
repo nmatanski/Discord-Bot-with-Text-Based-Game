@@ -26,7 +26,7 @@ namespace DiscordBot.Modules
 
             await ReplyAsync($"{Context.User.Mention}, you've been added to the DB!");
 
-            await Discord.UserExtensions.SendMessageAsync(Context.Message.Author, "Sign up link: https://discordbot-web.azurewebsites.net/Account/Register");
+            await Discord.UserExtensions.SendMessageAsync(Context.Message.Author, "Sign up link: ...in progress.../Account/Register");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonHelpers.Helpers;
+using System;
 
 namespace DAL.Database
 {
@@ -6,7 +7,7 @@ namespace DAL.Database
     {
         internal static string GetAppHarborConnection()
         {
-            return ""; ///TODO: AppHarbor Connection String
+            return SensitiveData.GetConnectionString(); ///TODO: AppHarbor Connection String
         }
 
         internal static string GetAzureConnection()

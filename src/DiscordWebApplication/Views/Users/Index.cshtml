@@ -71,8 +71,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Username)
                 </td>
-                @if (role.ToString() == "Administrator")
-                {
+
                     <td>
                         @Html.DisplayFor(modelItem => item.ImgUrl)
                     </td>
@@ -82,12 +81,11 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Password)
                     </td>
-                }
+
                 <td>
                     @Html.DisplayFor(modelItem => item.UserRole)
                 </td>
-                @if (role.ToString() == "Administrator")
-                {
+
                     <td>
                         @Html.DisplayFor(modelItem => item.ValidationCode)
                     </td>
@@ -100,17 +98,15 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.DateChanged)
                     </td>
-                }
+
                 <td>
-                    @if (role.ToString() == "Administrator")
-                    {
+
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    }
+
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    @if (role.ToString() == "Administrator")
-                    {
+
                         <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    }
+
                 </td>
             </tr>
         }
