@@ -1,17 +1,22 @@
-﻿namespace Engine
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Engine
 {
     public class LootItem
     {
-        public Item Details { get; set; }
+        [Key]
+        public int ID { get; set; }
+
+        public Item Item { get; set; }
 
         public int DropPercentage { get; set; }
 
         public bool IsDefaultItem { get; set; }
 
 
-        public LootItem(Item details, int dropPercentage, bool isDefaultItem)
+        public LootItem(Item item, int dropPercentage, bool isDefaultItem)
         {
-            Details = details;
+            Item = item;
             DropPercentage = dropPercentage;
             IsDefaultItem = isDefaultItem;
         }

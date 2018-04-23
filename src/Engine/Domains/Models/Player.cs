@@ -1,9 +1,11 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
-namespace Engine
+namespace Engine.PlayerService.Domain.Models
 {
     public class Player : Character
     {
@@ -24,6 +26,8 @@ namespace Engine
         public Weapon CurrentWeapon { get; set; }
 
 
+        public Player(int id, string name, int currentHP, int maxHP) : base(id, name, currentHP, maxHP) { }
+
         private Player(int id, string name, int currentHP, int maxHP, int gold, int xp) : base(id, name, currentHP, maxHP)
         {
             Gold = gold;
@@ -36,8 +40,8 @@ namespace Engine
         public static Player CreateDefaultPlayer()
         {
             Player player = new Player(1, "Seed", 10, 10, 20, 0);
-            player.Inventory.Add(new InventoryItem(World.ItemByID(World.ITEM_ID_BROKEN_SWORD), 1));
-            player.CurrentLocation = World.LocationByID(World.LOCATION_ID_HOME);
+            //player.Inventory.Add(new InventoryItem(World.ItemByID(World.ITEM_ID_BROKEN_SWORD), 1));
+            //player.CurrentLocation = World.LocationByID(World.LOCATION_ID_HOME);
 
             return player;
         }

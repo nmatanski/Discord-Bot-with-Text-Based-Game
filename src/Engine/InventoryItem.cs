@@ -1,7 +1,13 @@
-﻿namespace Engine
+﻿
+using System.ComponentModel.DataAnnotations;
+
+namespace Engine
 {
     public class InventoryItem
     {
+        [Key]
+        public int ID { get; set; }
+
         public Item Item { get; set; }
 
         public int Quantity { get; set; }
