@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Engine.Services
+namespace Engine.Domains
 {
-    public class EnemyManager
+    public interface IQuest
     {
 
     }
