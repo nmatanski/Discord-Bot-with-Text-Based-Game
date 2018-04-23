@@ -1,13 +1,49 @@
 ﻿using CommonHelpers.Extensions;
+using Engine;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace UserService.Domain.Models
 {
-    public sealed class User
+    public class User
     {
         private CustomId _id;
+
+        [Key]
+        public string Id
+        {
+            get { return _id.ToString(); }
+            private set { _id = new CustomId(new Guid(value)); }
+        }
+
+        public string Username { get; private set; }
+
+        [DisplayName("Avatar")]
+        public string ImgUrl { get; private set; }
+
+        public string Email { get; private set; }
+
+        public string Password { get; private set; }
+
+        [DisplayName("Role")]
+        public Role UserRole { get; set; }
+
+        [DisplayName("Validation Code")]
+        public string ValidationCode { get; private set; }
+
+        [DisplayName("Email Confirmed")]
+        public bool IsEmailConfirmed { get; private set; }
+
+        [DisplayName("Date Created")]
+        public DateTime? DateCreated { get; private set; }
+
+        [DisplayName("Date Changed")]
+        public DateTime? DateChanged { get; private set; }
+
+        [Required]
+        public virtual Player Player { get; set; }
+
 
         public User() { }
 
@@ -40,37 +76,6 @@ namespace UserService.Domain.Models
             DateChanged = dateChanged ?? DateTime.MinValue;
             _id = id ?? new CustomId();
         }
-
-        [Key]
-        public string Id
-        {
-            get { return _id.ToString(); }
-            private set { _id = new CustomId(new Guid(value)); }
-        }
-
-        public string Username { get; private set; }
-
-        [DisplayName("Avatar")]
-        public string ImgUrl { get; private set; }
-
-        public string Email { get; private set; }
-
-        public string Password { get; private set; }
-
-        [DisplayName("Role")]
-        public Role UserRole { get; set; }
-
-        [DisplayName("Validation Code")]
-        public string ValidationCode { get; private set; }
-
-        [DisplayName("Email Confirmed")]
-        public bool IsEmailConfirmed { get; private set; }
-
-        [DisplayName("Date Created")]
-        public DateTime? DateCreated { get; private set; }
-
-        [DisplayName("Date Changed")]
-        public DateTime? DateChanged { get; private set; }
 
     }
 }

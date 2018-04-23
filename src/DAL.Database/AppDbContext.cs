@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Database
 {
@@ -13,6 +14,8 @@ namespace DAL.Database
         }
 
         public DbSet<UserService.Domain.Models.User> Users { get; set; }
+
+        public DbSet<Engine.Player> Players { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
