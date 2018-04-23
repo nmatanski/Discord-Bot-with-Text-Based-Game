@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Engine.Domains
+namespace QuestCompletionItemService.Domain
 {
-    public interface IEnemy
+    public interface IQuest
     {
 
     }

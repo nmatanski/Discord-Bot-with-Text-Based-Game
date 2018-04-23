@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CharacterService.Domain\CharacterService.Domain.csproj" />
+    <ProjectReference Include="..\InventoryItemService.Domain\InventoryItemService.Domain.csproj" />
+    <ProjectReference Include="..\LocationService.Domain\LocationService.Domain.csproj" />
+    <ProjectReference Include="..\PlayerQuestService.Domain\PlayerQuestService.Domain.csproj" />
+    <ProjectReference Include="..\WeaponService.Domain\WeaponService.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

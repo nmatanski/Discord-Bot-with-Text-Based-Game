@@ -1,8 +1,8 @@
-﻿using System;
+﻿using LootItemService.Domain.Models;
+using NPCService.Domain.Models;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Engine
+namespace EnemyService.Domain.Models
 {
     public class Enemy : NPC
     {

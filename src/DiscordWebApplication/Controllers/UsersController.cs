@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using DAL.Database;
 using UserService.Domain.Models;
 using DiscordWebApplication.Extensions;
-using PagedList.Core;
 
 namespace DiscordWebApplication.Controllers
 {

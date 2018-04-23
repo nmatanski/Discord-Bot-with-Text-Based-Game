@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using ItemService.Domain.Models;
+using QuestCompletionItemService.Domain.Models;
+using System.Collections.Generic;
 
-namespace Engine
+namespace QuestService.Domain.Models
 {
     public class Quest
     {

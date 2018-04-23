@@ -1,4 +1,8 @@
-﻿namespace Engine
+﻿using EnemyService.Domain.Models;
+using ItemService.Domain.Models;
+using QuestService.Domain.Models;
+
+namespace LocationService.Domain.Models
 {
     public class Location
     {

@@ -1,5 +1,5 @@
 ﻿using CommonHelpers.Extensions;
-using Engine.PlayerService.Domain.Models;
+using PlayerService.Domain.Models;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;

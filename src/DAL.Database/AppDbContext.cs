@@ -15,15 +15,15 @@ namespace DAL.Database
 
         public DbSet<UserService.Domain.Models.User> Users { get; set; }
 
-        public DbSet<Engine.PlayerService.Domain.Models.Player> Players { get; set; }
+        public DbSet<PlayerService.Domain.Models.Player> Players { get; set; }
 
-        public DbSet<Engine.Enemy> Enemies { get; set; }
+        public DbSet<EnemyService.Domain.Models.Enemy> Enemies { get; set; }
 
-        public DbSet<Engine.Item> Items { get; set; }
+        public DbSet<ItemService.Domain.Models.Item> Items { get; set; }
 
-        public DbSet<Engine.Location> Locations { get; set; }
+        public DbSet<LocationService.Domain.Models.Location> Locations { get; set; }
 
-        public DbSet<Engine.Quest> Quests { get; set; }
+        public DbSet<QuestService.Domain.Models.Quest> Quests { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -1,4 +1,4 @@
-﻿namespace Engine
+﻿namespace ItemService.Domain.Models
 {
     public class Item
     {
