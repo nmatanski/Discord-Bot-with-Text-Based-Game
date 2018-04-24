@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DAL.Database\DAL.Database.csproj" />
+    <ProjectReference Include="..\PlayerService.Domain\PlayerService.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
