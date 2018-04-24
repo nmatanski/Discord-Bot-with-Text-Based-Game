@@ -76,6 +76,7 @@ namespace DAL.Database.Helpers.InMemoryObjects
 
         ///_______________________
 
+
         private static List<Item> PopulateItems()
         {
             return new List<Item>()
@@ -83,6 +84,7 @@ namespace DAL.Database.Helpers.InMemoryObjects
                 new Weapon(ITEM_ID_SMALL_DAGGER, "Small Dagger", "Small Daggers", 0, 5, 20)
             };
         }
+
         private static List<Enemy> PopulateEnemies()
         {
             Enemy dummy = new Enemy(ENEMY_ID_DUMMY, "Dummy", 1, 4, 0, 45, 45);
