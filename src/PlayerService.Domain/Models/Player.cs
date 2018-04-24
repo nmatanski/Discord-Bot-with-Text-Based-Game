@@ -1,9 +1,7 @@
 ﻿
 using CharacterService.Domain.Models;
-using InventoryItem.Domain;
 using ItemService.Domain.Models;
 using LocationService.Domain.Models;
-using PlayerQuestService.Domain.Models;
 using QuestService.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -22,7 +20,7 @@ namespace PlayerService.Domain.Models
 
         public int Level { get => (int)Math.Floor(((-90 + Math.Sqrt(8100 + 40 * XP)) / 20 + 1)); }
 
-        public List<InventoryItem.Domain.InventoryItem> Inventory { get; set; }
+        public List<InventoryItem> Inventory { get; set; }
 
         public List<PlayerQuest> Quests { get; set; }
 
@@ -38,7 +36,7 @@ namespace PlayerService.Domain.Models
             Gold = gold;
             XP = xp;
 
-            Inventory = new List<InventoryItem.Domain.InventoryItem>();
+            Inventory = new List<InventoryItem>();
             Quests = new List<PlayerQuest>();
         }
 
@@ -127,7 +125,7 @@ namespace PlayerService.Domain.Models
             var item = Inventory.SingleOrDefault(ii => ii.Item.ID == itemToAdd.ID);
 
             if (item == null) // Добави reward item-a като нов InventoryItem (на нов слот) с брой 1
-                Inventory.Add(new InventoryItem.Domain.InventoryItem(itemToAdd, 1));
+                Inventory.Add(new InventoryItem(itemToAdd, 1));
             else // RewardItem се съдържа в Inventory, затова само увеличи броя с 1
                 item.Quantity++;
         }

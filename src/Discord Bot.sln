@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{E6A403C8-3B5F-4270-B9EA-AD54D79FB230}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Discord Bot", "Discord Bot", "{EBC9610F-23DD-49A0-AB3F-BC13947CDF27}"
+	ProjectSection(SolutionItems) = preProject
+		DAL.Database\AppDbContext.cs = DAL.Database\AppDbContext.cs
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordBot", "DiscordBot\DiscordBot.csproj", "{482214E6-7929-4BC4-9E9D-3AC31CCB2DD9}"
 EndProject
@@ -31,13 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationService", "Noti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CharacterService.Domain", "CharacterService.Domain\CharacterService.Domain.csproj", "{EE51D78C-5B3E-47F5-9FE1-BBE99572DD82}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryItemService.Domain", "InventoryItemService.Domain\InventoryItemService.Domain.csproj", "{BA5EBBB9-BDA6-489E-8528-1E90CD4624CB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LootItemService.Domain", "LootItemService.Domain\LootItemService.Domain.csproj", "{E32E7144-76E5-4F31-B268-5628E87D8DB8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NPCService.Domain", "NPCService.Domain\NPCService.Domain.csproj", "{43E6E027-4DA5-453F-8DC5-F253FECF56D5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayerQuestService.Domain", "PlayerQuestService.Domain\PlayerQuestService.Domain.csproj", "{6A2F7751-DAAF-4C6D-8086-3DE454EE8540}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestCompletionItemService.Domain", "QuestCompletionItemService.Domain\QuestCompletionItemService.Domain.csproj", "{7D3BCB91-E9F9-4C40-845A-1D2D4C2E8990}"
 EndProject
@@ -53,15 +50,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayerService", "PlayerServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestService", "QuestService\QuestService.csproj", "{7E6EA729-7FD0-4984-B53C-96EC54928927}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnemyService.Domain", "EnemyService.Domain\EnemyService.Domain.csproj", "{9B520E42-CDBF-4458-8319-69B546E1C1B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnemyService.Domain", "EnemyService.Domain\EnemyService.Domain.csproj", "{9B520E42-CDBF-4458-8319-69B546E1C1B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemService.Domain", "ItemService.Domain\ItemService.Domain.csproj", "{C7EE1862-E3E9-4CF6-9AC1-91AE5DE81E91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemService.Domain", "ItemService.Domain\ItemService.Domain.csproj", "{C7EE1862-E3E9-4CF6-9AC1-91AE5DE81E91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationService.Domain", "LocationService.Domain\LocationService.Domain.csproj", "{37DCCD1E-E6F4-4B8B-86B3-AF6708619589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationService.Domain", "LocationService.Domain\LocationService.Domain.csproj", "{37DCCD1E-E6F4-4B8B-86B3-AF6708619589}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerService.Domain", "PlayerService.Domain\PlayerService.Domain.csproj", "{F951D80D-873D-4AEE-BD0C-AA23E0C0F715}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayerService.Domain", "PlayerService.Domain\PlayerService.Domain.csproj", "{F951D80D-873D-4AEE-BD0C-AA23E0C0F715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestService.Domain", "QuestService.Domain\QuestService.Domain.csproj", "{81AB4B58-5DCC-40EF-8A54-B5ADF04D5F7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestService.Domain", "QuestService.Domain\QuestService.Domain.csproj", "{81AB4B58-5DCC-40EF-8A54-B5ADF04D5F7F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsumableService.Domain", "ConsumableService.Domain\ConsumableService.Domain.csproj", "{9676F636-9CA8-4E3A-B406-C6B86959AB8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,22 +108,10 @@ Global
 		{EE51D78C-5B3E-47F5-9FE1-BBE99572DD82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE51D78C-5B3E-47F5-9FE1-BBE99572DD82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE51D78C-5B3E-47F5-9FE1-BBE99572DD82}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA5EBBB9-BDA6-489E-8528-1E90CD4624CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA5EBBB9-BDA6-489E-8528-1E90CD4624CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA5EBBB9-BDA6-489E-8528-1E90CD4624CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA5EBBB9-BDA6-489E-8528-1E90CD4624CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E32E7144-76E5-4F31-B268-5628E87D8DB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E32E7144-76E5-4F31-B268-5628E87D8DB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E32E7144-76E5-4F31-B268-5628E87D8DB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E32E7144-76E5-4F31-B268-5628E87D8DB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43E6E027-4DA5-453F-8DC5-F253FECF56D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43E6E027-4DA5-453F-8DC5-F253FECF56D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43E6E027-4DA5-453F-8DC5-F253FECF56D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43E6E027-4DA5-453F-8DC5-F253FECF56D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A2F7751-DAAF-4C6D-8086-3DE454EE8540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A2F7751-DAAF-4C6D-8086-3DE454EE8540}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A2F7751-DAAF-4C6D-8086-3DE454EE8540}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A2F7751-DAAF-4C6D-8086-3DE454EE8540}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7D3BCB91-E9F9-4C40-845A-1D2D4C2E8990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7D3BCB91-E9F9-4C40-845A-1D2D4C2E8990}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D3BCB91-E9F9-4C40-845A-1D2D4C2E8990}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -173,6 +160,10 @@ Global
 		{81AB4B58-5DCC-40EF-8A54-B5ADF04D5F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81AB4B58-5DCC-40EF-8A54-B5ADF04D5F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81AB4B58-5DCC-40EF-8A54-B5ADF04D5F7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9676F636-9CA8-4E3A-B406-C6B86959AB8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9676F636-9CA8-4E3A-B406-C6B86959AB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9676F636-9CA8-4E3A-B406-C6B86959AB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9676F636-9CA8-4E3A-B406-C6B86959AB8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -185,10 +176,7 @@ Global
 		{6BFC0B36-E6B2-4D97-BF6F-B5C95EFF50CF} = {C1D97DB5-1909-4E9A-A5B4-2ED195EFABD0}
 		{358CD866-FFFA-467F-B335-F9D9686A8F33} = {85302B17-8C2A-44A6-9C47-388399B12100}
 		{EE51D78C-5B3E-47F5-9FE1-BBE99572DD82} = {C1D97DB5-1909-4E9A-A5B4-2ED195EFABD0}
-		{BA5EBBB9-BDA6-489E-8528-1E90CD4624CB} = {C1D97DB5-1909-4E9A-A5B4-2ED195EFABD0}
-		{E32E7144-76E5-4F31-B268-5628E87D8DB8} = {C1D97DB5-1909-4E9A-A5B4-2ED195EFABD0}
 		{43E6E027-4DA5-453F-8DC5-F253FECF56D5} = {C1D97DB5-1909-4E9A-A5B4-2ED195EFABD0}
-		{6A2F7751-DAAF-4C6D-8086-3DE454EE8540} = {C1D97DB5-1909-4E9A-A5B4-2ED195EFABD0}
 		{7D3BCB91-E9F9-4C40-845A-1D2D4C2E8990} = {C1D97DB5-1909-4E9A-A5B4-2ED195EFABD0}
 		{15C392AE-8DCA-42DE-A670-998C1890CBD4} = {C1D97DB5-1909-4E9A-A5B4-2ED195EFABD0}
 		{4081F307-F4F8-45E5-AEAC-C63BB0D3B780} = {85302B17-8C2A-44A6-9C47-388399B12100}
@@ -201,6 +189,7 @@ Global
 		{37DCCD1E-E6F4-4B8B-86B3-AF6708619589} = {C1D97DB5-1909-4E9A-A5B4-2ED195EFABD0}
 		{F951D80D-873D-4AEE-BD0C-AA23E0C0F715} = {C1D97DB5-1909-4E9A-A5B4-2ED195EFABD0}
 		{81AB4B58-5DCC-40EF-8A54-B5ADF04D5F7F} = {C1D97DB5-1909-4E9A-A5B4-2ED195EFABD0}
+		{9676F636-9CA8-4E3A-B406-C6B86959AB8C} = {C1D97DB5-1909-4E9A-A5B4-2ED195EFABD0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6EC8DA92-0EC9-4067-9B37-6157C0C10244}

@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CommonHelpers\CommonHelpers.csproj" />
+    <ProjectReference Include="..\ConsumableService.Domain\ConsumableService.Domain.csproj" />
     <ProjectReference Include="..\EnemyService.Domain\EnemyService.Domain.csproj" />
     <ProjectReference Include="..\ItemService.Domain\ItemService.Domain.csproj" />
     <ProjectReference Include="..\LocationService.Domain\LocationService.Domain.csproj" />

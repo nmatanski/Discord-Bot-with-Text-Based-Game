@@ -1,11 +1,14 @@
 ﻿using EnemyService.Domain.Models;
 using ItemService.Domain.Models;
 using QuestService.Domain.Models;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LocationService.Domain.Models
 {
     public class Location
     {
+        [Key]
         public int ID { get; set; }
 
         public string Name { get; set; }
@@ -18,15 +21,31 @@ namespace LocationService.Domain.Models
 
         public Enemy EnemyLivingHere { get; set; }
 
-        public Location LocationToNorth { get; set; }
+        public string Map { get; set; } // map image src
+
+
+        [ForeignKey("LocationToNorth")]
+        public int? LocationToNorthID { get; set; }
+
+        public virtual Location LocationToNorth { get; set; }
+
+
+        [ForeignKey("LocationToEast")]
+        public int? LocationToEastID { get; set; }
 
         public Location LocationToEast { get; set; }
 
+
+        [ForeignKey("LocationToSouth")]
+        public int? LocationToSouthID { get; set; }
+
         public Location LocationToSouth { get; set; }
 
-        public Location LocationToWest { get; set; }
 
-        public string Map { get; set; } // map image src
+        [ForeignKey("LocationToWest")]
+        public int? LocationToWestID { get; set; }
+
+        public Location LocationToWest { get; set; }
 
 
         public Location(int id, string name, string description, string map, Item itemReqToEnter = null, Quest questAvailableHere = null, Enemy enemyLivingHere = null)

@@ -1,4 +1,4 @@
-﻿using LootItemService.Domain.Models;
+﻿
 using NPCService.Domain.Models;
 using System.Collections.Generic;
 

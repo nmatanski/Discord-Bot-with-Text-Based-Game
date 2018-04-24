@@ -9,7 +9,7 @@ namespace WeaponService.Domain.Models
         public int MaxDamage { get; set; }
 
 
-        public Weapon(int id, string name, string namePlural, int minDamage, int maxDamage) : base(id, name, namePlural)
+        public Weapon(int id, string name, string namePlural, int minDamage, int maxDamage, int price) : base(id, name, namePlural, price)
         {
             MinDamage = minDamage;
             MaxDamage = maxDamage;

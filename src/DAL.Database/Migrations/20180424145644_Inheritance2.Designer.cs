@@ -13,9 +13,10 @@ using UserService.Domain.Models;
 namespace DAL.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180424145644_Inheritance2")]
+    partial class Inheritance2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,6 +67,26 @@ namespace DAL.Database.Migrations
                     b.ToTable("LootItem");
                 });
 
+            modelBuilder.Entity("InventoryItem.Domain.InventoryItem", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ItemID");
+
+                    b.Property<int?>("PlayerID");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ItemID");
+
+                    b.HasIndex("PlayerID");
+
+                    b.ToTable("InventoryItem");
+                });
+
             modelBuilder.Entity("ItemService.Domain.Models.Item", b =>
                 {
                     b.Property<int>("ID")
@@ -98,14 +119,6 @@ namespace DAL.Database.Migrations
 
                     b.Property<int?>("ItemRequiredToEnterID");
 
-                    b.Property<int?>("LocationToEastID");
-
-                    b.Property<int?>("LocationToNorthID");
-
-                    b.Property<int?>("LocationToSouthID");
-
-                    b.Property<int?>("LocationToWestID");
-
                     b.Property<string>("Map");
 
                     b.Property<string>("Name");
@@ -123,24 +136,24 @@ namespace DAL.Database.Migrations
                     b.ToTable("Locations");
                 });
 
-            modelBuilder.Entity("PlayerService.Domain.Models.InventoryItem", b =>
+            modelBuilder.Entity("PlayerQuestService.Domain.Models.PlayerQuest", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ItemID");
+                    b.Property<bool>("IsCompleted");
 
-                    b.Property<int>("PlayerID");
+                    b.Property<int?>("PlayerID");
 
-                    b.Property<int>("Quantity");
+                    b.Property<int?>("QuestID");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ItemID");
-
                     b.HasIndex("PlayerID");
 
-                    b.ToTable("InventoryItem");
+                    b.HasIndex("QuestID");
+
+                    b.ToTable("PlayerQuest");
                 });
 
             modelBuilder.Entity("PlayerService.Domain.Models.Player", b =>
@@ -169,26 +182,6 @@ namespace DAL.Database.Migrations
                     b.HasIndex("CurrentWeaponID");
 
                     b.ToTable("Players");
-                });
-
-            modelBuilder.Entity("PlayerService.Domain.Models.PlayerQuest", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsCompleted");
-
-                    b.Property<int>("PlayerID");
-
-                    b.Property<int?>("QuestID");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("PlayerID");
-
-                    b.HasIndex("QuestID");
-
-                    b.ToTable("PlayerQuest");
                 });
 
             modelBuilder.Entity("QuestCompletionItemService.Domain.Models.QuestCompletionItem", b =>
@@ -290,6 +283,17 @@ namespace DAL.Database.Migrations
                         .HasForeignKey("ItemID");
                 });
 
+            modelBuilder.Entity("InventoryItem.Domain.InventoryItem", b =>
+                {
+                    b.HasOne("ItemService.Domain.Models.Item", "Item")
+                        .WithMany()
+                        .HasForeignKey("ItemID");
+
+                    b.HasOne("PlayerService.Domain.Models.Player")
+                        .WithMany("Inventory")
+                        .HasForeignKey("PlayerID");
+                });
+
             modelBuilder.Entity("LocationService.Domain.Models.Location", b =>
                 {
                     b.HasOne("EnemyService.Domain.Models.Enemy", "EnemyLivingHere")
@@ -305,16 +309,15 @@ namespace DAL.Database.Migrations
                         .HasForeignKey("QuestAvailableHereID");
                 });
 
-            modelBuilder.Entity("PlayerService.Domain.Models.InventoryItem", b =>
+            modelBuilder.Entity("PlayerQuestService.Domain.Models.PlayerQuest", b =>
                 {
-                    b.HasOne("ItemService.Domain.Models.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemID");
+                    b.HasOne("PlayerService.Domain.Models.Player")
+                        .WithMany("Quests")
+                        .HasForeignKey("PlayerID");
 
-                    b.HasOne("PlayerService.Domain.Models.Player", "Player")
-                        .WithMany("Inventory")
-                        .HasForeignKey("PlayerID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("QuestService.Domain.Models.Quest", "Quest")
+                        .WithMany()
+                        .HasForeignKey("QuestID");
                 });
 
             modelBuilder.Entity("PlayerService.Domain.Models.Player", b =>
@@ -326,18 +329,6 @@ namespace DAL.Database.Migrations
                     b.HasOne("WeaponService.Domain.Models.Weapon", "CurrentWeapon")
                         .WithMany()
                         .HasForeignKey("CurrentWeaponID");
-                });
-
-            modelBuilder.Entity("PlayerService.Domain.Models.PlayerQuest", b =>
-                {
-                    b.HasOne("PlayerService.Domain.Models.Player", "Player")
-                        .WithMany("Quests")
-                        .HasForeignKey("PlayerID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("QuestService.Domain.Models.Quest", "Quest")
-                        .WithMany()
-                        .HasForeignKey("QuestID");
                 });
 
             modelBuilder.Entity("QuestCompletionItemService.Domain.Models.QuestCompletionItem", b =>
