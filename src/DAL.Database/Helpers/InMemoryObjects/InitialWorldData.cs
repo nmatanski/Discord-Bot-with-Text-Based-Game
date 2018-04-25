@@ -1,6 +1,7 @@
 ﻿using EnemyService.Domain.Models;
 using ItemService.Domain.Models;
 using LocationService.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using QuestCompletionItemService.Domain.Models;
 using QuestService.Domain.Models;
 using System;
@@ -22,17 +23,23 @@ namespace DAL.Database.Helpers.InMemoryObjects
                 context.Items.Add(initialItems);
             }
 
+            context.SaveChanges();
+
             if (context.Enemies.Any()) return;
             foreach (var initialEnemies in PopulateEnemies())
             {
                 context.Enemies.Add(initialEnemies);
             }
 
+            context.SaveChanges();
+
             if (context.Quests.Any()) return;
             foreach (var initialQuests in PopulateQuests())
             {
                 context.Quests.Add(initialQuests);
             }
+
+            context.SaveChanges();
 
             if (context.Locations.Any()) return;
             foreach (var initialLocations in PopulateLocations())
@@ -87,9 +94,20 @@ namespace DAL.Database.Helpers.InMemoryObjects
 
         private static List<Enemy> PopulateEnemies()
         {
-            Enemy dummy = new Enemy(ENEMY_ID_DUMMY, "Dummy", 1, 4, 0, 45, 45);
-            dummy.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SMALL_DAGGER), 100, false));
+            context.Enemies.Include(enemy => enemy.LootTable); // !!!
 
+
+            var smallDagger = new LootItem(ItemByID(ITEM_ID_SMALL_DAGGER), 100, false, ITEM_ID_SMALL_DAGGER);
+            context.LootItems.Add(smallDagger);
+            context.SaveChanges();
+
+            Enemy dummy = new Enemy(ENEMY_ID_DUMMY, "Dummy", 1, 4, 0, 45, 45);
+            context.Enemies.Add(dummy);
+
+            // how to add the dagger to the dbset's instances' loottable collections, if the dbset's instances don't have access to the loottable collections in the Enemy ???
+            //context.Enemies.Include(enemy => enemy.LootTable); // ^ the answer
+
+            context.Enemies.FirstOrDefault(e => e.ID == smallDagger.EnemyID).LootTable.Add(smallDagger);
 
             return new List<Enemy>()
             {

@@ -23,11 +23,13 @@ namespace EnemyService.Domain.Models
         public virtual Enemy Enemy { get; set; }
 
 
-        public LootItem(Item item, int dropPercentage, bool isDefaultItem)
+        public LootItem(Item item, int dropPercentage, bool isDefaultItem, int enemyID)
         {
             Item = item;
             DropPercentage = dropPercentage;
             IsDefaultItem = isDefaultItem;
+
+            EnemyID = enemyID;
         }
     }
 }

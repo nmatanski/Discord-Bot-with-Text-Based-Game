@@ -13,8 +13,8 @@ using UserService.Domain.Models;
 namespace DAL.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180424162511_Player-Domain-Expansion")]
-    partial class PlayerDomainExpansion
+    [Migration("20180425173159_FixPTH")]
+    partial class FixPTH
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,7 +64,7 @@ namespace DAL.Database.Migrations
 
                     b.HasIndex("ItemID");
 
-                    b.ToTable("LootItem");
+                    b.ToTable("LootItems");
                 });
 
             modelBuilder.Entity("ItemService.Domain.Models.Item", b =>
@@ -264,6 +264,17 @@ namespace DAL.Database.Migrations
                     b.HasIndex("PlayerID");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ConsumableService.Domain.Models.Consumable", b =>
+                {
+                    b.HasBaseType("ItemService.Domain.Models.Item");
+
+                    b.Property<int>("AmountToHeal");
+
+                    b.ToTable("Consumable");
+
+                    b.HasDiscriminator().HasValue("Consumable");
                 });
 
             modelBuilder.Entity("WeaponService.Domain.Models.Weapon", b =>

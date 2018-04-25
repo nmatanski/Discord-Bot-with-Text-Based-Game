@@ -1,18 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.Collections.Generic;
 
 namespace DAL.Database.Migrations
 {
-    public partial class ArchitectureFixed : Migration
+    public partial class FixPTH : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "PlayerID",
-                table: "Users",
-                nullable: false,
-                defaultValue: 0);
-
             migrationBuilder.CreateTable(
                 name: "Enemies",
                 columns: table => new
@@ -35,11 +31,13 @@ namespace DAL.Database.Migrations
                 name: "Items",
                 columns: table => new
                 {
+                    AmountToHeal = table.Column<int>(nullable: true),
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Discriminator = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     NamePlural = table.Column<string>(nullable: true),
+                    Price = table.Column<int>(nullable: false),
                     MaxDamage = table.Column<int>(nullable: true),
                     MinDamage = table.Column<int>(nullable: true)
                 },
@@ -49,27 +47,27 @@ namespace DAL.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LootItem",
+                name: "LootItems",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DropPercentage = table.Column<int>(nullable: false),
-                    EnemyID = table.Column<int>(nullable: true),
+                    EnemyID = table.Column<int>(nullable: false),
                     IsDefaultItem = table.Column<bool>(nullable: false),
                     ItemID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LootItem", x => x.ID);
+                    table.PrimaryKey("PK_LootItems", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_LootItem_Enemies_EnemyID",
+                        name: "FK_LootItems_Enemies_EnemyID",
                         column: x => x.EnemyID,
                         principalTable: "Enemies",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LootItem_Items_ItemID",
+                        name: "FK_LootItems_Items_ItemID",
                         column: x => x.ItemID,
                         principalTable: "Items",
                         principalColumn: "ID",
@@ -108,6 +106,10 @@ namespace DAL.Database.Migrations
                     Description = table.Column<string>(nullable: true),
                     EnemyLivingHereID = table.Column<int>(nullable: true),
                     ItemRequiredToEnterID = table.Column<int>(nullable: true),
+                    LocationToEastID = table.Column<int>(nullable: true),
+                    LocationToNorthID = table.Column<int>(nullable: true),
+                    LocationToSouthID = table.Column<int>(nullable: true),
+                    LocationToWestID = table.Column<int>(nullable: true),
                     Map = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     QuestAvailableHereID = table.Column<int>(nullable: true)
@@ -200,7 +202,7 @@ namespace DAL.Database.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ItemID = table.Column<int>(nullable: true),
-                    PlayerID = table.Column<int>(nullable: true),
+                    PlayerID = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -217,7 +219,7 @@ namespace DAL.Database.Migrations
                         column: x => x.PlayerID,
                         principalTable: "Players",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -227,7 +229,7 @@ namespace DAL.Database.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     IsCompleted = table.Column<bool>(nullable: false),
-                    PlayerID = table.Column<int>(nullable: true),
+                    PlayerID = table.Column<int>(nullable: false),
                     QuestID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -238,7 +240,7 @@ namespace DAL.Database.Migrations
                         column: x => x.PlayerID,
                         principalTable: "Players",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PlayerQuest_Quests_QuestID",
                         column: x => x.QuestID,
@@ -247,10 +249,32 @@ namespace DAL.Database.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_PlayerID",
-                table: "Users",
-                column: "PlayerID");
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    DateChanged = table.Column<DateTime>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    ImgUrl = table.Column<string>(nullable: true),
+                    IsEmailConfirmed = table.Column<bool>(nullable: false),
+                    Password = table.Column<string>(nullable: true),
+                    PlayerID = table.Column<int>(nullable: false),
+                    UserRole = table.Column<int>(nullable: false),
+                    Username = table.Column<string>(nullable: true),
+                    ValidationCode = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_Players_PlayerID",
+                        column: x => x.PlayerID,
+                        principalTable: "Players",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_InventoryItem_ItemID",
@@ -278,13 +302,13 @@ namespace DAL.Database.Migrations
                 column: "QuestAvailableHereID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LootItem_EnemyID",
-                table: "LootItem",
+                name: "IX_LootItems_EnemyID",
+                table: "LootItems",
                 column: "EnemyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LootItem_ItemID",
-                table: "LootItem",
+                name: "IX_LootItems_ItemID",
+                table: "LootItems",
                 column: "ItemID");
 
             migrationBuilder.CreateIndex(
@@ -322,32 +346,28 @@ namespace DAL.Database.Migrations
                 table: "Quests",
                 column: "RewardItemID");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Users_Players_PlayerID",
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_PlayerID",
                 table: "Users",
-                column: "PlayerID",
-                principalTable: "Players",
-                principalColumn: "ID",
-                onDelete: ReferentialAction.Cascade);
+                column: "PlayerID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Users_Players_PlayerID",
-                table: "Users");
-
             migrationBuilder.DropTable(
                 name: "InventoryItem");
 
             migrationBuilder.DropTable(
-                name: "LootItem");
+                name: "LootItems");
 
             migrationBuilder.DropTable(
                 name: "PlayerQuest");
 
             migrationBuilder.DropTable(
                 name: "QuestCompletionItem");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Players");
@@ -363,14 +383,6 @@ namespace DAL.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "Items");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Users_PlayerID",
-                table: "Users");
-
-            migrationBuilder.DropColumn(
-                name: "PlayerID",
-                table: "Users");
         }
     }
 }
